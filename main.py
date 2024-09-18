@@ -26,7 +26,7 @@ class RAMUsageMonitor:
             self.process = None
             return
 
-    def start_simulation(self):
+    def start_animation(self):
         # Set up the plot
         self.fig = plt.figure()
         self.ax = plt.axes(xlim=(0, 100), ylim=(0, 100))
@@ -45,7 +45,10 @@ class RAMUsageMonitor:
     def get_ram_usage(self):
         try:
             memory_info = self.process.memory_info()
-            return memory_info.rss  # in bytes
+            total_memory = memory_info.rss  # in bytes
+            for child in self.process.children(recursive=True):
+                total_memory += child.memory_info().rss
+            return total_memory
         except psutil.NoSuchProcess:
             return None
 
@@ -83,6 +86,6 @@ class RAMUsageMonitor:
 
 
 if __name__ == '__main__':
-    pid = 97143  # Replace with your process PID
+    pid = 99089  # Replace with your process PID
     monitor = RAMUsageMonitor(pid, interval=500)
-    monitor.start_simulation()
+    monitor.start_animation()

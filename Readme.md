@@ -1,8 +1,8 @@
 ## Description
 
-Script draws a plot of process RAM usage. For example: 
+Script draws a plot of process RAM usage, including his child processes. For example: 
 
-![ram_usage_pid_97143.png](output%2Fram_usage_pid_97143.png)
+![pid_99089_2024-09-19_00:08:50.png](examples%2Fpid_99089_2024-09-19_00%3A08%3A50.png)
 
 ## Input data
 
